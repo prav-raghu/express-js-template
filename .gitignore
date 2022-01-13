@@ -1,0 +1,14 @@
+.project
+.sublime-project
+.jshintrc
+.settings
+.tern-project
+node_modules
+dist
+*.key
+*.key.json
+/public
+\.firebase/
+.idea
+coverage
+.nyc_output
