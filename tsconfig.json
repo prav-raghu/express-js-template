@@ -1,25 +1,25 @@
 {
-  "compilerOptions": {
-    
-    "outDir": "./dist",
-    "sourceMap": true,
-    "types": ["node"],
-    "target": "es2018",
-    "module": "commonjs",
-    "strict": true,
-    "declaration": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noEmitOnError": true,
-    "noImplicitAny": true,
-    "experimentalDecorators": false,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true
-  },
-  "typeRoots": ["node_module/@types"],
-  "include": ["src/**/*"],
-  "exclude": ["node_modules/**/*", "tests"]
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": true,
+        "types": ["node"],
+        "target": "es2018",
+        "module": "commonjs",
+        "strict": true,
+        "declaration": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true
+    },
+    "typeRoots": ["node_module/@types"],
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/**/*", "tests"]
 }

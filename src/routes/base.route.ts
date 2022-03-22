@@ -1,7 +1,7 @@
 import express from "express";
-
+import { BaseController } from "../controllers/base.controller";
 export const router = express.Router();
-
-router.get('/', (request, response) => {
-    response.send('Hello world!');
+const controller = new BaseController();
+router.get("/", async (request, response) => {
+    return response.send(await controller.ping());
 });
