@@ -1,12 +1,13 @@
 import express, { Application } from "express";
 import envalid = require("envalid");
-import { router } from "./routes/base.route";
-import { Swagger } from "./common/swagger";
-const path = require("path");
+import cors = require("cors");
+import helmet from "helmet";
+import path from "path";
+import bodyParser from "body-parser";
+import { RegisterRoutes } from "./routes";
+import * as swaggerJson from "./swagger.json";
+import * as swaggerUI from "swagger-ui-express";
 const pckg = require("../package.json");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const specs = swaggerJsdoc(Swagger.options);
 const { num, bool, str } = envalid;
 const env = envalid.cleanEnv(process.env, {
     PORT: num({ default: 3000 }),
@@ -21,8 +22,12 @@ export class Main {
 
     constructor() {
         this.app = express();
-        this.app.use("/documentation", swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
-        this.app.use("/", router);
+        this.app.use(helmet());
+        this.app.use(cors());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(bodyParser.json());
+        this.app.use(["/documentation"], swaggerUI.serve, swaggerUI.setup(swaggerJson));
+        RegisterRoutes(this.app);
         this.app.use("/", express.static(path.join(__dirname, "static")));
     }
 
@@ -34,7 +39,10 @@ export class Main {
                     console.log(`📖 documentation available here: ${env.NODE_ENV == "development" ? `http://localhost:${env.PORT}` : "mytelnet-auth-service.co.za"}/documentation 📖`);
                     resolve(port);
                 })
-                .on("error", (err: object) => reject(err));
+                .on("error", (exception: object) => {
+                    console.error(exception);
+                    reject(exception);
+                });
         });
     };
 }
