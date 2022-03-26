@@ -5,7 +5,33 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"UserModel": {
+				"properties": {
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"username": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"rememberMe": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"userId",
+					"username",
+					"password",
+					"rememberMe"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -39,16 +65,19 @@
 				"parameters": []
 			}
 		},
-		"/User/test": {
+		"/User": {
 			"get": {
-				"operationId": "Ping",
+				"operationId": "GetAll",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "string"
+									"items": {
+										"$ref": "#/components/schemas/UserModel"
+									},
+									"type": "array"
 								}
 							}
 						}
@@ -56,6 +85,33 @@
 				},
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/User/{userId}": {
+			"get": {
+				"operationId": "GetById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
 			}
 		}
 	},

@@ -11,6 +11,17 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "UserModel": {
+        "dataType": "refObject",
+        "properties": {
+            "userId": {"dataType":"double","required":true},
+            "username": {"dataType":"string","required":true},
+            "password": {"dataType":"string","required":true},
+            "rememberMe": {"dataType":"boolean","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -43,9 +54,9 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/User/test',
+        app.get('/User',
 
-            function UserController_ping(request: any, response: any, next: any) {
+            function UserController_getAll(request: any, response: any, next: any) {
             const args = {
             };
 
@@ -58,7 +69,30 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new UserController();
 
 
-              const promise = controller.ping.apply(controller, validatedArgs as any);
+              const promise = controller.getAll.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/User/:userId',
+
+            function UserController_getById(request: any, response: any, next: any) {
+            const args = {
+                    userId: {"in":"path","name":"userId","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new UserController();
+
+
+              const promise = controller.getById.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
