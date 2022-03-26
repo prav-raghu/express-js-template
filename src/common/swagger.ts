@@ -5,7 +5,7 @@ export class Swagger {
             info: {
                 title: "Express JS Template",
                 version: "0.0.1",
-                description: "Express JS Template",
+                description: "A node based API done in Express JS",
                 license: {
                     name: "MIT",
                     url: "https://spdx.org/licenses/MIT.html",
@@ -16,11 +16,11 @@ export class Swagger {
                     email: "pravir.raghu@gmail.com",
                 },
             },
-            servers: [
-                {
-                    url: "http://localhost:3000/books",
-                },
-            ],
+            // servers: [
+            //     {
+            //         url: "http://localhost:3000/books",
+            //     },
+            // ],
         },
         apis: ["./routes/books.js"],
     };

@@ -2,7 +2,7 @@ import { Get, Route } from "tsoa";
 
 @Route("Base")
 export class BaseController {
-    @Get("/")
+    @Get("/ping")
     public async ping(): Promise<string> {
         return "pong";
     }
